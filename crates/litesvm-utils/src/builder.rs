@@ -73,7 +73,8 @@ impl LiteSVMBuilder {
     pub fn build(mut self) -> LiteSVM {
         // Deploy all programs
         for (program_id, program_bytes) in self.programs {
-            self.svm.add_program(program_id, &program_bytes);
+            self.svm.add_program(program_id, &program_bytes)
+                .expect("Failed to add program");
         }
 
         self.svm
@@ -161,7 +162,8 @@ pub trait ProgramTestExt {
 
 impl ProgramTestExt for LiteSVM {
     fn deploy_program(&mut self, program_id: Pubkey, program_bytes: &[u8]) {
-        self.add_program(program_id, program_bytes);
+        self.add_program(program_id, program_bytes)
+            .expect("Failed to deploy program");
     }
 }
 

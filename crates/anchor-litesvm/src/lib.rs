@@ -156,7 +156,6 @@ pub use solana_sdk::signature::{Keypair, Signer};
 #[cfg(test)]
 mod integration_tests {
     use super::*;
-    use anchor_lang::AnchorSerialize;
     use borsh::BorshSerialize;
 
     #[test]
@@ -167,15 +166,10 @@ mod integration_tests {
         let _ctx = AnchorContext::new(svm, program_id);
 
         // Test instruction building
+        // In anchor 1.0.0-rc.2, AnchorSerialize is an alias for BorshSerialize
         #[derive(BorshSerialize)]
         struct TestArgs {
             value: u64,
-        }
-
-        impl AnchorSerialize for TestArgs {
-            fn serialize<W: std::io::Write>(&self, writer: &mut W) -> std::io::Result<()> {
-                BorshSerialize::serialize(self, writer)
-            }
         }
 
         let accounts = vec![

@@ -206,7 +206,7 @@ impl TestHelpers for LiteSVM {
         let rent = self.minimum_balance_for_rent_exemption(82);
 
         // Create mint account
-        let create_account_ix = solana_program::system_instruction::create_account(
+        let create_account_ix = solana_system_interface::instruction::create_account(
             &authority.pubkey(),
             &mint.pubkey(),
             rent,
@@ -247,7 +247,7 @@ impl TestHelpers for LiteSVM {
         let rent = self.minimum_balance_for_rent_exemption(165);
 
         // Create account
-        let create_account_ix = solana_program::system_instruction::create_account(
+        let create_account_ix = solana_system_interface::instruction::create_account(
             &owner.pubkey(),
             &token_account.pubkey(),
             rent,

@@ -5,7 +5,7 @@
 
 use anchor_lang::{InstructionData, ToAccountMetas};
 use solana_program::{
-    instruction::{AccountMeta, Instruction},
+    instruction::Instruction,
     pubkey::Pubkey,
 };
 
@@ -63,7 +63,7 @@ impl Program {
 /// You typically don't create this directly - use `program().accounts()` instead.
 pub struct InstructionBuilder {
     program_id: Pubkey,
-    accounts: Vec<AccountMeta>,
+    accounts: Vec<solana_program::instruction::AccountMeta>,
     data: Vec<u8>,
 }
 
@@ -107,7 +107,8 @@ impl InstructionBuilder {
 mod tests {
     use super::Program;
     use anchor_lang::{prelude::*, InstructionData, ToAccountMetas};
-    use solana_program::{instruction::AccountMeta, pubkey::Pubkey};
+    use solana_program::pubkey::Pubkey;
+    use solana_program::instruction::AccountMeta;
 
     struct TestAccounts {
         user: Pubkey,

@@ -200,6 +200,7 @@ pub trait ProgramTestExt {
 
 impl ProgramTestExt for AnchorContext {
     fn deploy_program(&mut self, program_id: Pubkey, program_bytes: &[u8]) {
-        self.svm.add_program(program_id, program_bytes);
+        self.svm.add_program(program_id, program_bytes)
+            .expect("Failed to deploy program");
     }
 }

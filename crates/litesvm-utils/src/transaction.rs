@@ -487,7 +487,7 @@ impl TransactionHelpers for LiteSVM {
 mod tests {
     use super::*;
     use crate::test_helpers::TestHelpers;
-    use solana_program::system_instruction;
+    use solana_system_interface::instruction as system_instruction;
 
     #[test]
     fn test_transaction_result_success() {
